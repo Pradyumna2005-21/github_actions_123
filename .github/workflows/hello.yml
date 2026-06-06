@@ -20,3 +20,11 @@ jobs:
     steps:
       - name: say hello to myself
         run: echo "Hello $MY_NAME ."
+
+  details:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Version details of Python, Docker, etc
+        run: docker --version && python --version
+      
