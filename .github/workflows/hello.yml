@@ -1,9 +1,14 @@
 # This is the workflow name
 name: Hello workflow
 
-# Runs on a trigger
+# In this push, there will be a paths section inside the paths section. I will give myself the path when i will commit the HTML file, and the workflow will run
 on:
- workflow_dispatch: 
+  push:
+    branches: main
+
+    paths:
+      - '**.html'
+      
 
 # These are jobs inside the workflow
 jobs:
