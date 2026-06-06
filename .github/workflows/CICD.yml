@@ -1,0 +1,63 @@
+# This is the workflow name
+name: Hello workflow
+
+# In this push, there will be a paths section inside the paths section. I will give myself the path when i will commit the HTML file, and the workflow will run
+on:
+  workflow_dispatch: 
+      inputs:
+        environments:
+        description: THIS IS THE ENVIRONMENT VALUE WHERE THE WORKFLOW RUNS
+        default: dev
+        required: true
+        type: choice
+            options:
+                - dev
+                - prod
+                - staging
+    paths:
+      - '**.html'
+      
+
+# These are jobs inside the workflow
+jobs:
+  # This is the name of the job
+  code:
+    # This is the GitHub runner (uses a dash, not an underscore)
+    runs-on: ubuntu-latest
+    
+    # This must be plural ('steps')
+    steps:
+      - name: Checkout code
+        run: echo "Code clone from GitHub."
+
+  build:
+    # This is the GitHub runner (uses a dash, not an underscore)
+    needs: code
+    runs-on: ubuntu-latest
+    
+    # This must be plural ('steps')
+    steps:
+      - name: Docker Container
+        run: echo "Docker Container Created."
+
+  Test:
+    # This is the GitHub runner (uses a dash, not an underscore)
+    needs: build
+    runs-on: ubuntu-latest
+    
+    # This must be plural ('steps')
+    steps:
+      - name: Test the container
+        run: echo "Testing the container."
+
+
+  deploy:
+    # This is the GitHub runner (uses a dash, not an underscore)
+    needs: Test
+    runs-on: ubuntu-latest
+    
+    # This must be plural ('steps')
+    steps:
+      - name: deployment
+        run: echo "deployment succeeded."
+      
