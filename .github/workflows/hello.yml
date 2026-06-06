@@ -13,8 +13,8 @@ jobs:
     # This is the GitHub runner (uses a dash, not an underscore)
     runs-on: ubuntu-latest
 
-  env:
-    MY_NAME: "Pradyumna"
+    env:
+      MY_NAME: "Pradyumna"
     
     # This must be plural ('steps')
     steps:
