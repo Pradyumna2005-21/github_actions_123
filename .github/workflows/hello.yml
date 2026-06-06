@@ -3,28 +3,45 @@ name: Hello workflow
 
 # Runs on a trigger
 on:
-  push:
-    branches: [main]
+ workflow_dispatch: 
 
 # These are jobs inside the workflow
 jobs:
   # This is the name of the job
-  greet:
+  code:
     # This is the GitHub runner (uses a dash, not an underscore)
     runs-on: ubuntu-latest
-
-    env:
-      MY_NAME: "Pradyumna"
     
     # This must be plural ('steps')
     steps:
-      - name: say hello to myself
-        run: echo "Hello $MY_NAME ."
+      - name: Checkout code
+        run: echo "Code clone from GitHub."
 
-  details:
+  build:
+    # This is the GitHub runner (uses a dash, not an underscore)
     runs-on: ubuntu-latest
-
+    
+    # This must be plural ('steps')
     steps:
-      - name: Version details of Python, Docker, etc
-        run: docker --version && python --version
+      - name: Docker Container
+        run: echo "Docker Container Created."
+
+  Test:
+    # This is the GitHub runner (uses a dash, not an underscore)
+    runs-on: ubuntu-latest
+    
+    # This must be plural ('steps')
+    steps:
+      - name: Test the container
+        run: echo "Testing the container."
+
+
+  deploy:
+    # This is the GitHub runner (uses a dash, not an underscore)
+    runs-on: ubuntu-latest
+    
+    # This must be plural ('steps')
+    steps:
+      - name: deployment
+        run: echo "deploy sucessed."
       
