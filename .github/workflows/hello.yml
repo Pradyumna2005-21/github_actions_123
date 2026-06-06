@@ -12,8 +12,11 @@ jobs:
   greet:
     # This is the GitHub runner (uses a dash, not an underscore)
     runs-on: ubuntu-latest
+
+  env:
+    MY_NAME: "Pradyumna"
     
     # This must be plural ('steps')
     steps:
-      - name: say hello to users
-        run: echo "Hello dosto."
+      - name: say hello to myself
+        run: echo "Hello $MY_NAME ."
