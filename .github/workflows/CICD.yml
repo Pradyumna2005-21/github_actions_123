@@ -1,5 +1,5 @@
 # This is the workflow name
-name: Hello workflow
+name: CICD workflow
 
 on:
   # Manual trigger with inputs
@@ -46,6 +46,7 @@ jobs:
         run: echo "Testing the container."
 
   deploy:
+    if: inputs.environments == 'dev'
     needs: Test
     runs-on: ubuntu-latest
     steps:
