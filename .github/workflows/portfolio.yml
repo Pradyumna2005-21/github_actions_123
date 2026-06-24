@@ -3,6 +3,16 @@ name: Portfolio Deployment
 on:
   workflow_dispatch: 
 
+# Grant the necessary permissions for GitHub Pages deployments
+permissions:
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment to prevent conflicts
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -11,29 +21,32 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    permissions:
-      pages: write
-      id-token: write
-
     steps:
-        - name: checkout code
-          uses: actions/checkout@v4
+      # 1. Download your repository source code onto the runner
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: setup GitHub Pages
-          uses: actions/configure-pages@v4
+      # 2. Configure the runner environment for GitHub Pages
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
 
-        # Add steps to build your Vite project before uploading
-        - name: Install dependencies
-          run: npm ci
+      # 3. Install project dependencies (uses 'npm install' to avoid lockfile crashes)
+      - name: Install dependencies
+        run: npm install
 
-        - name: Build project
-          run: npm run build
+      # 4. Compile your source files into production assets
+      - name: Build project
+        run: npm run build
 
-        - name: upload static files
-          uses: actions/upload-pages-artifact@v4
-          with:
-            path: index.html # Targets the compiled output folder
-            
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+      # 5. Pack and upload the production ready folder
+      - name: Upload static files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          # Targets the compiled output folder. 
+          # Change './dist' to './build' if your framework uses the build folder instead.
+          path: 'index.html' 
+
+      # 6. Complete the deployment process to publish your website live
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
