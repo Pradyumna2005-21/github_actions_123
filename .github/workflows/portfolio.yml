@@ -1,1 +1,30 @@
+name: Portfolio Deployment
 
+on:
+  workflow_dispatch: 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      # clone or check out the code where this workflow is written
+        - name: checkout code
+          uses: actions/checkout@v4
+      # setup GitHub Pages
+        - name: setup GitHub Pages
+          uses: actions/configure-pages@v4
+      # upload static files to GitHub Pages
+        - name: upload static files
+          uses: actions/upload-pages-artifact@v4
+          with:
+            path: index.html
+      # deploy to GitHub Pages    
+        - name: Deploy to GitHub Pages
+          uses: actions/deploy-pages@v4
+         
+        
