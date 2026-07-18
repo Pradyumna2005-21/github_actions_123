@@ -18,8 +18,4 @@ jobs:
             uses: docker/setup-compose-action@v2
 
           - name: deploy with docker compose
-<<<<<<< HEAD
-            run: docker compose up -d 
-=======
-            run: docker compose up -d 
->>>>>>> d7549fc871f057bb17727b174d776db17b90873c
+            
