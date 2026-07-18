@@ -1,6 +1,5 @@
 services:
   web:
-    build: .
     image: ${DOCKERHUB_USR}/app:latest
     ports:
       - "80:80"
