@@ -2,5 +2,5 @@ services:
   web:
     image: ${DOCKERHUB_USR}/app:latest
     ports:
-      - "80:80"
+      - "80:5000"
       
