@@ -1,7 +1,0 @@
-services:
-
-  web:
-    image: ${DOCKERHUB_USR}/app:${DOCKER_TAG}
-    ports:
-      - "80:80"
-      
