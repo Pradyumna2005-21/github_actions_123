@@ -9,6 +9,7 @@ jobs:
 
     env:
       DOCKERHUB_USR: ${{ vars.DOCKERHUB_USR }}
+      DOCKER_TAG: ${{ github.sha }}
 
     steps:
       - name: Checkout code
