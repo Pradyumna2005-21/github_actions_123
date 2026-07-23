@@ -1,6 +1,6 @@
 services:
 
   web:
-    image: ${DOCKERHUB_USER}/app:${github.sha}
+    image: ${DOCKERHUB_USER}/app:${DOCKER_TAG}
     ports:
       - "80:80"
