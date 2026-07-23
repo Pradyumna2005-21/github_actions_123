@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r reurt.txt
+          pip install -r requirements.txt
           pip install flake8
 
       - name: Run linter
